@@ -15,6 +15,7 @@ args = parser.parse_args()
 
 if not args.key:
     logging.fatal('API Key missing')
+    exit()
 client = SimpleLogin(apikey=args.key)
 src = sys.argv[2]
 dest = sys.argv[3]
@@ -28,8 +29,10 @@ for mailbox in m:
         logging.info('found dest mailbox id: '+str(dest_id))
 if not src_id:
     logging.fatal('Could not find mailbox for '+args.src)
+    exit()
 if not dest_id:
     logging.fatal('Could not find mailbox for '+args.dest)
+    exit()
 a = client.get_aliases()
 for alias in a:
     boxes = [x['id'] for x in alias['mailboxes']]
