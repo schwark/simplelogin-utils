@@ -1,6 +1,5 @@
 from simplelogin import SimpleLogin
 import logging
-import sys
 import argparse
 
 logging.basicConfig(level=logging.INFO)
@@ -17,8 +16,6 @@ if not args.key:
     logging.fatal('API Key missing')
     exit()
 client = SimpleLogin(apikey=args.key)
-src = sys.argv[2]
-dest = sys.argv[3]
 m = client.get_mailboxes()
 for mailbox in m:
     if args.src and args.src in mailbox['email']:
